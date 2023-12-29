@@ -2,7 +2,7 @@
 
 
 //* GLOBALS 
-const SKY = ''
+const SKY = 'SKY'
 
 
 
