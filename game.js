@@ -26,6 +26,7 @@ function onInit() {
   console.log('gGame', gGame)
 
   gBoard = createBoard(BOARD_SIZE)
+  createHero(gBoard)
   createAliens(gBoard)
   console.table(gBoard)
 
