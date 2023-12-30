@@ -38,10 +38,13 @@ function moveHero(ev) {
   console.log('hello')
 
   const nextPos = onKeyDown(ev)
+  if (nextPos.j < 0 || nextPos.j > 13) return
   console.log('nextPos', nextPos)
 
-  // const nextCell = gBoard[nextPos.i][nextPos.j]
-  // gHero.pos = nextPos
+  gHero.pos
+  updateCell(gHero.pos, null)
+  gHero.pos = nextPos
+  updateCell(gHero.pos, HERO)
 
 
 }

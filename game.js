@@ -40,7 +40,7 @@ function onInit() {
 
 
 
-
+//* FUNCTION 
 function createBoard() {
   const board = []
   for (let i = 0; i < BOARD_SIZE; i++) {
