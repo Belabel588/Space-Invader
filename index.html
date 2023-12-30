@@ -7,13 +7,13 @@
     <title>Space Invader</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body onload="onInit()">
+  <body onload="onInit()" onkeydown="moveHero(event)">
     <table class="board-container">
       <tbody class="board"></tbody>
     </table>
-    <script src="Util.js"></script>
     <script src="game.js"></script>
-    <script src="alien.js"></script>
     <script src="hero.js"></script>
+    <script src="alien.js"></script>
+    <script src="Util.js"></script>
   </body>
 </html>
