@@ -45,41 +45,49 @@ function moveHero(ev) {
 
   console.log('nextPos', nextPos)
 
+
   gHero.pos
   updateCell(gHero.pos, null)
 
   gHero.pos = nextPos
   updateCell(gHero.pos, HERO)
 
-  blinkLaser(nextPos)
+  // console.log('gLaser', gLaser)
+  // blinkLaser(gHero.pos)
+
+  shoot(gHero.pos)
   console.log('gLaser', gLaser)
-
-
+  console.log('gHero.isShoot', gHero.isShoot)
 
 
 }
 
-
-
 function createLaser(pos) {
+  if (gHero.isShoot === true) return
   gLaser = {
     pos: { i: pos.i - 1, j: pos.j },
     speed: LASER_SPEED
   }
-  return gLaser
+}
 
+function shoot(pos) {
+  clearInterval(gLaserInterval)
+  gLaserInterval = setInterval(() => blinkLaser(pos), 1100);
 }
 
 function blinkLaser(pos) {
-  if (gLaser) return
-  else {
-    createLaser(pos)
-    updateCell(gLaser.pos, LASER)
+  createLaser(gHero.pos)
+  updateCell(gLaser.pos, LASER)
+  gHero.isShoot = true
+  console.log('gLaser.pos', gLaser.pos)
 
-    setTimeout(() => {
-      updateCell(gLaser.pos, null)
-    }, 3000)
+  setTimeout(() => {
+    updateCell(gLaser.pos, null)
+    gLaser.pos.i--
+    console.log('gLaser.pos', gLaser.pos)
+  }, 1000)
 
-  }
 }
+
+
 
