@@ -32,6 +32,11 @@ function onInit() {
   createHero(gBoard)
   createAliens(gBoard)
   console.table(gBoard)
+
+
+
+
+
 }
 
 
