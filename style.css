@@ -32,7 +32,7 @@ body {
   color: rgb(191, 193, 195);
 }
 
-.game-over-modal {
+.game-over-win-modal {
   text-align: center;
   position: absolute;
   width: 300px;
