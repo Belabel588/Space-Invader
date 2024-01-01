@@ -32,18 +32,7 @@ function onInit() {
   createHero(gBoard)
   createAliens(gBoard)
   console.table(gBoard)
-
-
-
-
-
-
 }
-
-
-
-
-
 
 
 //* FUNCTION 
@@ -59,9 +48,6 @@ function createBoard() {
         }
       } else {
         board[i][j] = createCell()
-        // console.log('board[i][j]', board[i][j])
-
-        // console.log('i', i)
       }
     }
   }

@@ -43,7 +43,7 @@ function moveHero(ev) {
   if (nextPos.j < 0 || nextPos.j > 13) return
 
 
-  console.log('nextPos', nextPos)
+  // console.log('nextPos', nextPos)
 
 
   gHero.pos
@@ -52,13 +52,12 @@ function moveHero(ev) {
   gHero.pos = nextPos
   updateCell(gHero.pos, HERO)
 
-  // console.log('gLaser', gLaser)
-  // blinkLaser(gHero.pos)
+
 
   shoot(gHero.pos)
-  console.log('gLaser', gLaser)
-  console.log('gHero.isShoot', gHero.isShoot)
-
+  // console.log('gLaser', gLaser)
+  // console.log('gHero.isShoot', gHero.isShoot)
+  // console.log('nextCell', nextCell)
 
 }
 
@@ -70,24 +69,51 @@ function createLaser(pos) {
   }
 }
 
-function shoot(pos) {
-  clearInterval(gLaserInterval)
-  gLaserInterval = setInterval(() => blinkLaser(pos), 1100);
-}
-
 function blinkLaser(pos) {
-  createLaser(gHero.pos)
+
+  if (gLaser.pos.i < 0) {
+    clearInterval(gLaserInterval)
+    gHero.isShoot = false
+    return
+  }
+
+
+  let nextCell = gBoard[gLaser.pos.i][gLaser.pos.j]
+  if (nextCell.gameObject === ALIEN) {
+    clearInterval(gLaserInterval)
+    updateCell(gLaser.pos, null)
+    gHero.isShoot = false
+    return
+  }
   updateCell(gLaser.pos, LASER)
-  gHero.isShoot = true
-  console.log('gLaser.pos', gLaser.pos)
 
   setTimeout(() => {
+    gHero.isShoot = true
     updateCell(gLaser.pos, null)
     gLaser.pos.i--
     console.log('gLaser.pos', gLaser.pos)
+    console.log('nextCell', nextCell)
+
+
+
+    // console.log('nextCell', nextCell)
+    // if (nextCell.gameObject === ALIEN) return
+
   }, 1000)
 
 }
+
+function shoot(pos) {
+  createLaser(gHero.pos)
+  clearInterval(gLaserInterval)
+
+  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 2100);
+
+
+}
+
+
+
 
 
 
