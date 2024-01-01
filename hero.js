@@ -71,7 +71,7 @@ function createLaser(pos) {
 
 function blinkLaser(pos) {
 
-  if (gLaser.pos.i < 0) {
+  if (gLaser.pos.i <= 0) {
     clearInterval(gLaserInterval)
     gHero.isShoot = false
     return
@@ -99,7 +99,7 @@ function blinkLaser(pos) {
     // console.log('nextCell', nextCell)
     // if (nextCell.gameObject === ALIEN) return
 
-  }, 1000)
+  }, 200)
 
 }
 
@@ -107,7 +107,7 @@ function shoot(pos) {
   createLaser(gHero.pos)
   clearInterval(gLaserInterval)
 
-  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 2100);
+  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 1200);
 
 
 }
