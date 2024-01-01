@@ -24,8 +24,10 @@ let gGame
 function onInit() {
   gGame = {
     isOn: false,
+    isWin: false,
     alienCount: 0,
-    score: 0
+    score: 0,
+    winCount: (ALIEN_ROW_LENGTH * ALIEN_ROW_COUNT)
   }
   console.log('gGame', gGame)
 
@@ -91,7 +93,17 @@ function checkScore() {
 }
 
 
+function checkWin() {
+  if (gGame.alienCount === gGame.winCount) {
+    gGame.isWin = true
+    gameOver()
+  }
+}
 
+function gameOver() {
+  let elGameOverModal = document.querySelector('.game-over-modal')
+  elGameOverModal.style.display = 'block'
+}
 
 function updateCell(pos, gameObject = null) {
 
