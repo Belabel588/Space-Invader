@@ -83,6 +83,9 @@ function blinkLaser(pos) {
     clearInterval(gLaserInterval)
     updateCell(gLaser.pos, null)
     gHero.isShoot = false
+    gGame.alienCount++
+    gGame.score += 10
+    checkScore()
     return
   }
   updateCell(gLaser.pos, LASER)
@@ -91,8 +94,8 @@ function blinkLaser(pos) {
     gHero.isShoot = true
     updateCell(gLaser.pos, null)
     gLaser.pos.i--
-    console.log('gLaser.pos', gLaser.pos)
-    console.log('nextCell', nextCell)
+    // console.log('gLaser.pos', gLaser.pos)
+    // console.log('nextCell', nextCell)
 
 
 

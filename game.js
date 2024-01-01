@@ -18,12 +18,14 @@ let gBoard
 let gGame
 
 
+
 //* FLOW 
 
 function onInit() {
   gGame = {
     isOn: false,
-    alienCount: 0
+    alienCount: 0,
+    score: 0
   }
   console.log('gGame', gGame)
 
@@ -32,6 +34,7 @@ function onInit() {
   createHero(gBoard)
   createAliens(gBoard)
   console.table(gBoard)
+
 }
 
 
@@ -71,6 +74,20 @@ function renderBoard(board) {
   const elContainer = document.querySelector(`.board`)
   elContainer.innerHTML = strHTML
   // console.log('strHTML', strHTML)
+}
+
+
+
+function checkScore() {
+  let elScore = document.querySelector(".score")
+  // console.log('elScore', elScore)
+  let strHTML = ''
+
+  strHTML += `score: ${gGame.score}`
+  // console.log('strHTML', strHTML)
+
+  elScore.innerHTML = strHTML
+
 }
 
 
