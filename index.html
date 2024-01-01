@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="onInit()" onkeydown="moveHero(event)">
+    <div class="instructions-modal">
+      <p>to shoot click "x" on the keyboard 👾</p>
+      <button class="dismiss-button" onclick="onDismiss()">dismiss</button>
+    </div>
     <h1 class="title">Space Invaders:</h1>
     <h2 class="score">score: <span>0</span></h2>
     <table class="board-container">
       <div class="game-over-win-modal">
         <p>YOU WON!!! 🥳</p>
-        <button class="restart-button">restart</button>
+        <button class="restart-button" onclick="onRestart()">Play Again</button>
       </div>
       <tbody class="board"></tbody>
     </table>

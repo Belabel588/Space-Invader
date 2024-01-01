@@ -19,6 +19,7 @@ function createHero(board) {
 
 
 function onKeyDown(eventKeyboard) {
+  console.log('eventKeyboard', eventKeyboard)
   const nextPos = { i: gHero.pos.i, j: gHero.pos.j }
 
   switch (eventKeyboard.key) {
@@ -28,6 +29,10 @@ function onKeyDown(eventKeyboard) {
 
     case 'ArrowRight':
       nextPos.j++
+      break;
+
+    case 'x':
+      shoot()
       break;
 
     default: return null
@@ -54,12 +59,17 @@ function moveHero(ev) {
 
 
 
-  shoot(gHero.pos)
+  // shoot(gHero.pos)
   // console.log('gLaser', gLaser)
   // console.log('gHero.isShoot', gHero.isShoot)
   // console.log('nextCell', nextCell)
 
 }
+
+// function onXShoot(ev) {
+//   console.log('ev', ev)
+// }
+
 
 function createLaser(pos) {
   if (gHero.isShoot === true) return
@@ -111,7 +121,7 @@ function shoot(pos) {
   createLaser(gHero.pos)
   clearInterval(gLaserInterval)
 
-  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 400);
+  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 300);
 
 
 }

@@ -37,6 +37,8 @@ function onInit() {
   createAliens(gBoard)
   console.table(gBoard)
 
+
+
 }
 
 
@@ -101,8 +103,23 @@ function checkWin() {
 }
 
 function gameOver() {
-  let elGameOverModal = document.querySelector('.game-over-modal')
-  elGameOverModal.style.display = 'block'
+  let elGameOverWinModal = document.querySelector('.game-over-win-modal')
+  elGameOverWinModal.style.display = 'block'
+}
+
+function onRestart() {
+  // console.log('supposed to restart')
+  let elGameOverWinModal = document.querySelector('.game-over-win-modal')
+  elGameOverWinModal.style.display = 'none'
+  onInit()
+  checkScore()
+
+}
+
+
+function onDismiss() {
+  let elDismissBtn = document.querySelector('.instructions-modal')
+  elDismissBtn.style.display = 'none'
 }
 
 function updateCell(pos, gameObject = null) {
