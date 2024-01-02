@@ -38,7 +38,8 @@ function onInit() {
   const alienArr = buildAliensArr(gBoard)
   console.log('alienArr', alienArr)
   console.table(gBoard)
-  shiftBoardRight(gBoard, 0, ALIEN_ROW_COUNT)
+  // shiftBoardRight(gBoard, 0, ALIEN_ROW_COUNT)
+  moveAliens()
 
   // gLaserInterval = setInterval(() => shiftBoardRight(gBoard), 300);
 

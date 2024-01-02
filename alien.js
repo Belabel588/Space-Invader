@@ -30,9 +30,14 @@ function buildAliensArr(board) {
 }
 
 
+function moveAliens() {
+  gIntervalAliens = setInterval(() => shiftBoardRight(gBoard, 0, ALIEN_ROW_COUNT), 1000);
+
+}
+
 function shiftBoardRight(board, fromI, toI) {
   for (let i = fromI; i < toI; i++) {
-    for (let j = ALIEN_ROW_LENGTH - 1; j >= 0; j--) {
+    for (let j = board.length - 1; j >= 0; j--) {
 
       const nextPos = { i: i, j: j + 1 }
       const currPos = { i: i, j: j }
