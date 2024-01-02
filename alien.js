@@ -31,6 +31,7 @@ function buildAliensArr(board) {
 
 
 function moveAliens() {
+  clearInterval(gIntervalAliens)
   gIntervalAliens = setInterval(() => shiftBoardRight(gBoard, 0, ALIEN_ROW_COUNT), 2500);
 
 }
