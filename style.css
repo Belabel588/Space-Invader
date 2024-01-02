@@ -4,32 +4,35 @@
 }
 
 body {
-  background-color: rgb(104, 104, 104);
+  background-color: rgb(3, 3, 3);
 }
 
 .board-container {
   margin: auto;
+  /* min-height: 700px; */
+  /* min-width: 700px; */
   background-color: rgb(27, 27, 27);
+  background-image: url("background.png"), url("background.png");
 }
 
 .cell {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 60px;
   text-align: center;
-  border: 1px solid black;
+  /* border: 1px solid rgb(255, 255, 255); */
 }
 
 .title {
   text-align: center;
-  color: rgb(191, 193, 195);
-  background-color: rgb(96, 0, 0);
+  color: rgb(235, 235, 235);
+  background-color: rgb(156, 1, 1);
   margin-bottom: 5px;
 }
 
 .score {
   text-align: center;
   margin-bottom: 20px;
-  color: rgb(191, 193, 195);
+  color: rgb(235, 235, 235);
 }
 
 .game-over-win-modal {
@@ -43,7 +46,7 @@ body {
   background-color: rgb(128, 17, 17);
   transform: translate(-50%, -50%);
   display: none;
-  color: rgb(225, 225, 225);
+  color: rgb(235, 235, 235);
 }
 
 .restart-button {
@@ -58,11 +61,22 @@ body {
   left: 50%;
   top: 40%;
   border: rgb(47, 47, 47) 4px solid;
-  background-color: rgb(128, 17, 17);
+  background-color: rgb(154, 22, 22);
   transform: translate(-50%, -50%);
-  color: rgb(231, 231, 231);
+  color: rgb(255, 255, 255);
 }
 
 .dismiss-button {
   margin-top: 50px;
+}
+
+.space-ship {
+  width: 70px;
+}
+.missile {
+  width: 15px;
+  height: 40px;
+}
+.alien {
+  width: 40px;
 }

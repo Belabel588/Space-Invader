@@ -28,10 +28,10 @@ function shiftBoardRight(board, fromI, toI) {
 
       if (board[j] > 13) return
       if (currCell.gameObject === ALIEN) {
-        // currCell.gameObject = null
-        // toCell.gameObject = ALIEN
-        updateCell(currCell, null)
-        updateCell(toCell, ALIEN)
+        currCell.gameObject = null
+        toCell.gameObject = ALIEN
+        // updateCell(currCell, null)
+        // updateCell(toCell, ALIEN)
 
         //       }
       }

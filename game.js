@@ -7,9 +7,9 @@ const BOARD_SIZE = 14
 const ALIEN_ROW_LENGTH = 8
 const ALIEN_ROW_COUNT = 3
 
-const HERO = '🛸'
-const ALIEN = '👾'
-const LASER = '⬆'
+const HERO = '<img class="space-ship" src="space-ship.png">'
+const ALIEN = '<img class="alien" src="alien.png">'
+const LASER = '<img class="missile" src="missile.png">'
 
 
 const EARTH = 'EARTH'
@@ -36,7 +36,7 @@ function onInit() {
   createHero(gBoard)
   createAliens(gBoard)
   console.table(gBoard)
-  shiftBoardRight(gBoard, ALIEN_ROW_COUNT, ALIEN_ROW_LENGTH)
+  // shiftBoardRight(gBoard, ALIEN_ROW_COUNT, ALIEN_ROW_LENGTH)
 
   // gLaserInterval = setInterval(() => shiftBoardRight(gBoard), 300);
 
