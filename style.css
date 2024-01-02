@@ -4,12 +4,12 @@
 }
 
 body {
-  background-color: rgb(47, 47, 47);
+  background-color: rgb(104, 104, 104);
 }
 
 .board-container {
   margin: auto;
-  background-color: rgb(218, 218, 218);
+  background-color: rgb(27, 27, 27);
 }
 
 .cell {
@@ -43,6 +43,7 @@ body {
   background-color: rgb(128, 17, 17);
   transform: translate(-50%, -50%);
   display: none;
+  color: rgb(225, 225, 225);
 }
 
 .restart-button {
@@ -59,7 +60,7 @@ body {
   border: rgb(47, 47, 47) 4px solid;
   background-color: rgb(128, 17, 17);
   transform: translate(-50%, -50%);
-  /* display: none; */
+  color: rgb(231, 231, 231);
 }
 
 .dismiss-button {
