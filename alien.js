@@ -31,7 +31,7 @@ function buildAliensArr(board) {
 
 
 function moveAliens() {
-  gIntervalAliens = setInterval(() => shiftBoardRight(gBoard, 0, ALIEN_ROW_COUNT), 1000);
+  gIntervalAliens = setInterval(() => shiftBoardRight(gBoard, 0, ALIEN_ROW_COUNT), 2500);
 
 }
 
@@ -41,6 +41,7 @@ function shiftBoardRight(board, fromI, toI) {
 
       const nextPos = { i: i, j: j + 1 }
       const currPos = { i: i, j: j }
+      if (board[nextPos.j > 13]) clearInterval(gIntervalAliens)
       if (board[currPos.i][currPos.j].gameObject === ALIEN && board[nextPos.i][nextPos.j].gameObject === null) {
         updateCell(currPos, null)
         updateCell(nextPos, ALIEN)
