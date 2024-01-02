@@ -9,7 +9,7 @@ body {
 
 .board-container {
   margin: auto;
-  /* min-height: 700px; */
+  /* min-height: 200px; */
   /* min-width: 700px; */
   background-color: rgb(27, 27, 27);
   background-image: url("background.png"), url("background.png");
@@ -19,13 +19,13 @@ body {
   width: 80px;
   height: 60px;
   text-align: center;
-  /* border: 1px solid rgb(255, 255, 255); */
+  border: 1px solid rgb(70, 70, 70);
 }
 
 .title {
   text-align: center;
   color: rgb(235, 235, 235);
-  background-color: rgb(156, 1, 1);
+  background-color: rgb(97, 1, 1);
   margin-bottom: 5px;
 }
 
@@ -61,7 +61,7 @@ body {
   left: 50%;
   top: 40%;
   border: rgb(47, 47, 47) 4px solid;
-  background-color: rgb(154, 22, 22);
+  background-color: rgb(141, 22, 22);
   transform: translate(-50%, -50%);
   color: rgb(255, 255, 255);
 }

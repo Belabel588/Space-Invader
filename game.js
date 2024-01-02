@@ -35,8 +35,10 @@ function onInit() {
   renderBoard(gBoard)
   createHero(gBoard)
   createAliens(gBoard)
+  const alienArr = buildAliensArr(gBoard)
+  console.log('alienArr', alienArr)
   console.table(gBoard)
-  // shiftBoardRight(gBoard, ALIEN_ROW_COUNT, ALIEN_ROW_LENGTH)
+  shiftBoardRight(gBoard, 0, ALIEN_ROW_COUNT)
 
   // gLaserInterval = setInterval(() => shiftBoardRight(gBoard), 300);
 
