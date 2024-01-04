@@ -5,7 +5,7 @@
 
 const BOARD_SIZE = 14
 const ALIEN_ROW_LENGTH = 8
-const ALIEN_ROW_COUNT = 3
+let ALIEN_ROW_COUNT = 3
 
 const HERO = '<img class="space-ship" src="space-ship.png">'
 const ALIEN = '<img class="alien" src="alien.png">'
@@ -34,12 +34,15 @@ function onInit() {
   gBoard = createBoard(BOARD_SIZE)
   renderBoard(gBoard)
   createHero(gBoard)
+  gAliensBottomRowIdx = ALIEN_ROW_COUNT - 1
   createAliens(gBoard)
   const alienArr = buildAliensArr(gBoard)
   console.log('alienArr', alienArr)
   console.table(gBoard)
   // shiftBoardRight(gBoard, 0, ALIEN_ROW_COUNT)
-  moveAliens()
+  moveAliens(shiftBoardRight)
+
+
 
   // gLaserInterval = setInterval(() => shiftBoardRight(gBoard), 300);
 
