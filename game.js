@@ -34,7 +34,7 @@ function onInit() {
   gBoard = createBoard(BOARD_SIZE)
   renderBoard(gBoard)
   createHero(gBoard)
-  gAliensBottomRowIdx = ALIEN_ROW_COUNT - 1
+  gAliensBottomRowIdx = ALIEN_ROW_COUNT
   createAliens(gBoard)
   const alienArr = buildAliensArr(gBoard)
   console.log('alienArr', alienArr)
@@ -117,10 +117,12 @@ function gameOver() {
 
 
 function onStartGame() {
-  let elGameOverWinModal = document.querySelector('.Start-Restart')
+  let elGameStartRestart = document.querySelector('.Start-Restart')
   gGame.isOn = true
-  onInit
-  checkScore
+
+  if (gGame.isOn === true)
+    elGameStartRestart.innerText = 'Restart'
+  else elGameStartRestart.innerText = 'Start'
 }
 
 function onRestart() {

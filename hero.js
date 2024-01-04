@@ -123,23 +123,23 @@ function blinkLaser(pos) {
 }
 
 function shoot(pos) {
-  if (!gGame.isOn) return
+  // if (!gGame.isOn) return
   createLaser(gHero.pos)
   clearInterval(gLaserInterval)
 
-  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 350);
+  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 300);
 
 
 }
-function superShot(pos) {
-  if (!gGame.isOn) return
-  createLaser(gHero.pos)
-  clearInterval(gLaserInterval)
+// function superShot(pos) {
+//   if (!gGame.isOn) return
+//   createLaser(gHero.pos)
+//   clearInterval(gLaserInterval)
 
-  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 100);
+//   gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 100);
 
 
-}
+// }
 
 
 
