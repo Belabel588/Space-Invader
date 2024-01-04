@@ -6,7 +6,7 @@ let gIntervalAliens
 let gIsAlienFreeze = true
 let gAliensTopRowIdx = 0
 let shiftRight
-var gAliensBottomRowIdx
+let gAliensBottomRowIdx
 
 
 
@@ -33,49 +33,18 @@ function buildAliensArr(board) {
   return alienArr
 }
 
-
-
-
-
-
 function moveAliens(shift) {
+
   clearInterval(gIntervalAliens)
   gIntervalAliens = setInterval(() => {
     shift(gBoard, gAliensTopRowIdx, ALIEN_ROW_COUNT)
   }, ALIEN_SPEED)
 
-  //   gIntervalAliens = setInterval(() => {
-  //     shiftBoardRight(gBoard, gAlienRow, ALIEN_ROW_COUNT)
-  //   }, ALIEN_SPEED)
-
-
-  //   setTimeout(() => {
-  //     clearInterval(gIntervalAliens)
-  //     shiftBoardDown(gBoard, 0, ALIEN_ROW_COUNT)
-  //   }, 3200)
-
-  //   setTimeout(() => {
-
-  //     // clearInterval(gIntervalAliens)
-
-  //     gIntervalAliensLeft = setInterval(() => {
-  //       shiftBoardLeft(gBoard, gAlienRow, ALIEN_ROW_COUNT)
-  //     }, 2000)
-  //   })
 }
 
 
-//   shiftBoardDown(gBoard, 0, ALIEN_ROW_COUNT)
-// }, ALIEN_SPEED);
-// setTimeout(() => {
-//   shiftBoardLeft(gBoard, 0, ALIEN_ROW_COUNT)
-// }, ALIEN_SPEED);
-// shiftBoardDown(gBoard, 0, ALIEN_ROW_COUNT),
-// shiftBoardLeft(gBoard, 0, ALIEN_ROW_COUNT), ALIEN_SPEED)
-
-
-
 function shiftBoardRight(board, fromI, toI) {
+  if (!gGame.isOn) return
   shiftRight = true
 
   for (let i = fromI; i < toI; i++) {
@@ -106,32 +75,16 @@ function shiftBoardRight(board, fromI, toI) {
 }
 
 
-// if (shiftRight === false && shiftDown === true && shiftLeft === true) {
-//   moveAliens(shiftBoardLeft)
-// }
-
-// if (shiftRight === false && shiftDown === true && shiftLeft === false) {
-//   clearInterval(gIntervalAliens)
-//   moveAliens(shiftBoardLeft)
-// }
-
-
-// if (shiftLeft === true && shiftDown === false && shiftRight === false) {
-//   clearInterval(gIntervalAliens)
-//   moveAliens(shiftBoardLeft)
-// }
-
-
-
 function shiftBoardDown(board, fromI, toI) {
   for (let i = fromI; i < toI; i++) {
     for (let j = board.length - 1; j >= 0; j--) {
       const nextPos = { i: i + 1, j: j }
       const currPos = { i: i, j: j }
-      if (board[currPos.i][currPos.j].gameObject === ALIEN && board[nextPos.i][nextPos.j].gameObject === null) {
+      if (board[currPos.i][currPos.j].gameObject === ALIEN &&
+        board[nextPos.i][nextPos.j].gameObject === null) {
         updateCell(currPos, null)
         updateCell(nextPos, ALIEN)
-        // clearInterval(gIntervalAliens)
+
       }
     }
   }
@@ -142,8 +95,7 @@ function shiftBoardDown(board, fromI, toI) {
   // clearInterval(gIntervalAliens)
   moveAliens(rightOLeft)
 
-  // console.log('ALIEN_ROW_COUNT', ALIEN_ROW_COUNT)
-  // console.log('gAlienRow', gAlienRow)
+
 }
 
 
@@ -171,79 +123,3 @@ function shiftBoardLeft(board, fromI, toI) {
   }
 }
 
-
-// function shiftBoardLeft(board, fromI, toI) {
-//   for (let i = fromI; i < toI; i++) {
-//     for (let j = board.length - 1; j > ALIEN_ROW_LENGTH; j--) {
-
-//       const nextPos = { i: i, j: j - 1 }
-//       const currPos = { i: i, j: j }
-//       if (board[nextPos.j < 13]) clearInterval(gIntervalAliens)
-//       if (board[currPos.i][currPos.j].gameObject === ALIEN && board[nextPos.i][nextPos.j].gameObject === null) {
-//         updateCell(currPos, null)
-//         updateCell(nextPos, ALIEN)
-//       }
-//     }
-//   }
-// }
-
-
-  // }
-  // const currCell = arr[i]
-  // console.log('currCell', currCell)
-  // const right = 1
-  // const nextPos = arr[i[i][j]]
-
-  // console.log('nextPos', nextPos)
-  // updateCell(currCell, null)
-  // updateCell(nextPos, ALIEN)
-
-
-
-
-
-
-
-
-
-// }
-
-
-
-//   const right = 1
-//   for (let i = 0; i < fromI; i++) {
-//     for (let j = 0; j < toI; j++) {
-//       const nextPos = board[i][j + right]
-//       updateCell(nextPos, ALIEN)
-
-
-
-//     }
-//   }
-// }
-
-
-
-
-
-  // for (let i = 0; i < fromI; i++) {
-    //   for (let j = 0; j < toI; j++) {
-      //     let currCell = board[i][j]
-  //     console.log('currCell', currCell)
-  //     let toCell = board[i][j++]
-  //     console.log('toCell', toCell)
-
-
-  //     if (board[j] > 13) return
-  //     if (currCell.gameObject === ALIEN) {
-  //       currCell.gameObject = null
-  //       toCell.gameObject = ALIEN
-  // updateCell(currCell, null)
-  // updateCell(toCell, ALIEN)
-
-  //       }
-// }
-
-    // }
-  // }
-// }

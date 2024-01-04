@@ -31,8 +31,12 @@ function onKeyDown(eventKeyboard) {
       nextPos.j++
       break;
 
-    case 'x':
+    case ' ':
       shoot()
+      break;
+
+    case 'x':
+      superShot()
       break;
 
     default: return null
@@ -42,6 +46,7 @@ function onKeyDown(eventKeyboard) {
 
 
 function moveHero(ev) {
+  if (!gGame.isOn) return
   // console.log('hello')
 
   const nextPos = onKeyDown(ev)
@@ -118,10 +123,20 @@ function blinkLaser(pos) {
 }
 
 function shoot(pos) {
+  if (!gGame.isOn) return
   createLaser(gHero.pos)
   clearInterval(gLaserInterval)
 
-  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 300);
+  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 350);
+
+
+}
+function superShot(pos) {
+  if (!gGame.isOn) return
+  createLaser(gHero.pos)
+  clearInterval(gLaserInterval)
+
+  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 100);
 
 
 }

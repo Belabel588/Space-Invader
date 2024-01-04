@@ -115,6 +115,14 @@ function gameOver() {
   elGameOverWinModal.style.display = 'block'
 }
 
+
+function onStartGame() {
+  let elGameOverWinModal = document.querySelector('.Start-Restart')
+  gGame.isOn = true
+  onInit
+  checkScore
+}
+
 function onRestart() {
   // console.log('supposed to restart')
   let elGameOverWinModal = document.querySelector('.game-over-win-modal')
