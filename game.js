@@ -1,25 +1,17 @@
 'use strict'
 
-
-//* GLOBALS 
-
-const BOARD_SIZE = 14
-const ALIEN_ROW_LENGTH = 8
-let ALIEN_ROW_COUNT = 3
+//* GLOBALS
 
 const HERO = '<img class="space-ship" src="space-ship.png">'
 const ALIEN = '<img class="alien" src="alien.png">'
 const LASER = '<img class="missile" src="missile.png">'
-
 
 const EARTH = 'EARTH'
 
 let gBoard
 let gGame
 
-
-
-//* FLOW 
+//* FLOW
 
 function onInit() {
   gGame = {
@@ -27,30 +19,23 @@ function onInit() {
     isWin: false,
     alienCount: 0,
     score: 0,
-    winCount: (ALIEN_ROW_LENGTH * ALIEN_ROW_COUNT)
+    winCount: ALIEN_ROW_LENGTH * ALIEN_ROW_COUNT,
   }
-  console.log('gGame', gGame)
 
+  console.log('gGame', gGame)
   gBoard = createBoard(BOARD_SIZE)
   renderBoard(gBoard)
   createHero(gBoard)
-  gAliensBottomRowIdx = ALIEN_ROW_COUNT
   createAliens(gBoard)
   const alienArr = buildAliensArr(gBoard)
-  console.log('alienArr', alienArr)
   console.table(gBoard)
   // shiftBoardRight(gBoard, 0, ALIEN_ROW_COUNT)
   moveAliens(shiftBoardRight)
 
-
-
   // gLaserInterval = setInterval(() => shiftBoardRight(gBoard), 300);
-
-
 }
 
-
-//* FUNCTION 
+//* FUNCTION
 function createBoard() {
   const board = []
   for (let i = 0; i < BOARD_SIZE; i++) {
@@ -59,7 +44,7 @@ function createBoard() {
       if (i === BOARD_SIZE - 1) {
         board[i][j] = {
           type: EARTH,
-          gameObject: null
+          gameObject: null,
         }
       } else {
         board[i][j] = createCell()
@@ -74,8 +59,6 @@ function renderBoard(board) {
   for (let i = 0; i < board.length; i++) {
     strHTML += `<tr>\n`
     for (let j = 0; j < board[0].length; j++) {
-
-
       const cell = board[i][j]
       const className = `cell cell-${i}-${j}`
 
@@ -88,10 +71,8 @@ function renderBoard(board) {
   // console.log('strHTML', strHTML)
 }
 
-
-
 function checkScore() {
-  let elScore = document.querySelector(".score")
+  let elScore = document.querySelector('.score')
   // console.log('elScore', elScore)
   let strHTML = ''
 
@@ -99,9 +80,7 @@ function checkScore() {
   // console.log('strHTML', strHTML)
 
   elScore.innerHTML = strHTML
-
 }
-
 
 function checkWin() {
   if (gGame.alienCount === gGame.winCount) {
@@ -115,14 +94,9 @@ function gameOver() {
   elGameOverWinModal.style.display = 'block'
 }
 
-
 function onStartGame() {
   let elGameStartRestart = document.querySelector('.Start-Restart')
   gGame.isOn = true
-
-  if (gGame.isOn === true)
-    elGameStartRestart.innerText = 'Restart'
-  else elGameStartRestart.innerText = 'Start'
 }
 
 function onRestart() {
@@ -131,9 +105,7 @@ function onRestart() {
   elGameOverWinModal.style.display = 'none'
   onInit()
   checkScore()
-
 }
-
 
 function onDismiss() {
   let elDismissBtn = document.querySelector('.instructions-modal')
@@ -141,26 +113,9 @@ function onDismiss() {
 }
 
 function updateCell(pos, gameObject = null) {
-
   gBoard[pos.i][pos.j].gameObject = gameObject
 
   let elCell = getElCell(pos)
 
   elCell.innerHTML = gameObject || ''
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

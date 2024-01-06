@@ -1,20 +1,20 @@
 'use strict'
 
-//* GLOBALS 
-const ALIEN_SPEED = 1600
+//* GLOBALS
+const BOARD_SIZE = 14
+const ALIEN_ROW_LENGTH = 8
+const ALIEN_ROW_COUNT = 3
+const ALIEN_SPEED = 500
+
 let gIntervalAliens
 let gIsAlienFreeze = true
 let gAliensTopRowIdx = 0
 let shiftRight
-let gAliensBottomRowIdx
-
-
+let gAliensBottomRowIdx = ALIEN_ROW_COUNT
 
 function createAliens(board) {
-
   for (let i = 0; i < ALIEN_ROW_COUNT; i++) {
     for (let j = 0; j < ALIEN_ROW_LENGTH; j++) {
-
       updateCell({ i, j }, ALIEN)
     }
   }
@@ -27,106 +27,96 @@ function buildAliensArr(board) {
       if (board[i][j].gameObject === ALIEN) {
         alienArr.push(board[i][j])
       }
-
     }
   }
   return alienArr
 }
 
 function moveAliens(shift) {
-
   clearInterval(gIntervalAliens)
   gIntervalAliens = setInterval(() => {
     shift(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
   }, ALIEN_SPEED)
-
 }
-
 
 function shiftBoardRight(board, fromI, toI) {
   if (!gGame.isOn) return
   shiftRight = true
+  let allRowsReachedEnd = true
 
   for (let i = fromI; i < toI; i++) {
-    for (let j = board.length - 1; j >= 0; j--) {
-
+    let rowReachedEnd = false
+    for (let j = board[i].length - 1; j >= 0; j--) {
       const nextPos = { i: i, j: j + 1 }
       const currPos = { i: i, j: j }
 
+      if (board[currPos.i][currPos.j].gameObject === ALIEN) {
+        if (nextPos.j < board[i].length) {
+          if (board[nextPos.i][nextPos.j].gameObject === null) {
+            updateCell(currPos, null)
+            updateCell(nextPos, ALIEN)
+          }
+        } else {
+          rowReachedEnd = true
+        }
+      }
+    }
+    allRowsReachedEnd = allRowsReachedEnd && rowReachedEnd
+  }
 
-      if (board[currPos.i][currPos.j].gameObject === ALIEN &&
-        board[nextPos.i][nextPos.j].gameObject === null) {
+  if (allRowsReachedEnd) {
+    clearInterval(gIntervalAliens)
+    shiftBoardDown(gBoard, 0, ALIEN_ROW_COUNT)
+    shiftRight = false
+  }
+}
 
-        updateCell(currPos, null)
-        updateCell(nextPos, ALIEN)
+function shiftBoardDown(board, fromI, toI) {
+  for (let i = toI - 1; i >= fromI; i--) {
+    for (let j = 0; j < board[0].length; j++) {
+      let currPos = { i: i, j: j }
+      let nextPos = { i: i + 1, j: j }
 
-
-        if (nextPos.j === board[i].length - 1) {
-          clearInterval(gIntervalAliens)
-          moveAliens(shiftBoardDown)
-          shiftRight = false
-
-
-
-          // clearInterval(gIntervalAliens)
+      if (board[currPos.i][currPos.j].gameObject === ALIEN) {
+        if (nextPos.i < board.length && board[nextPos.i][nextPos.j].gameObject === null) {
+          updateCell(currPos, null)
+          updateCell(nextPos, ALIEN)
         }
       }
     }
   }
-  console.log('shiftRight', shiftRight)
-}
 
-
-function shiftBoardDown(board, fromI, toI) {
-  for (let i = fromI; i < toI; i++) {
-    for (let j = board.length - 1; j >= 0; j--) {
-      const nextPos = { i: i + 1, j: j }
-      const currPos = { i: i, j: j }
-      if (board[currPos.i][currPos.j].gameObject === ALIEN &&
-        board[nextPos.i][nextPos.j].gameObject === null) {
-        updateCell(currPos, null)
-        updateCell(nextPos, ALIEN)
-
-      }
-    }
+  clearInterval(gIntervalAliens)
+  if (shiftRight) {
+    moveAliens(shiftBoardLeft)
+  } else {
+    moveAliens(shiftBoardRight)
   }
-
-  let rightOLeft
-  if (shiftRight === true) rightOLeft = shiftBoardRight
-  else if (shiftRight === false) rightOLeft = shiftBoardLeft
-  // clearInterval(gIntervalAliens)
-  moveAliens(rightOLeft)
-  // gAliensBottomRowIdx
-  // gAliensTopRowIdx 
-
-
 }
-
 
 function shiftBoardLeft(board, fromI, toI) {
-  console.log('shifting left')
-  // clearInterval(gIntervalAliensDown)
-  for (let i = fromI + 1; i < toI + 1; i++) {
-    for (let j = 0; j < board[i].length; j++) {
+  let allRowsReachedLeft = true
 
+  for (let i = 0; i < 5; i++) {
+    let rowReachedLeft = true
+    for (let j = 0; j < board[i].length; j++) {
       const nextPos = { i: i, j: j - 1 }
       const currPos = { i: i, j: j }
 
-
-
-      if (nextPos.j < 0) {
-        // shiftRight = true
-        console.log('its happening')
-
-        clearInterval(gIntervalAliens)
-        moveAliens(shiftBoardDown)
-      }
-      else if (board[currPos.i][currPos.j].gameObject === ALIEN && board[nextPos.i][nextPos.j].gameObject === null) {
-        updateCell(currPos, null)
-        updateCell(nextPos, ALIEN)
+      if (board[currPos.i][currPos.j].gameObject === ALIEN) {
+        if (nextPos.j >= 0 && board[nextPos.i][nextPos.j].gameObject === null) {
+          updateCell(currPos, null)
+          updateCell(nextPos, ALIEN)
+          rowReachedLeft = false
+        }
       }
     }
+    allRowsReachedLeft = allRowsReachedLeft && rowReachedLeft
+  }
 
+  if (allRowsReachedLeft) {
+    clearInterval(gIntervalAliens)
+    shiftBoardDown(board, 0, 5)
+    shiftRight = true
   }
 }
-

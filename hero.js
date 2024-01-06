@@ -1,22 +1,19 @@
 'use strict'
 
-
-//* GLOBALS 
+//* GLOBALS
 const LASER_SPEED = 80
 let gHero
 let gLaser
 let gLaserInterval
 
-
 function createHero(board) {
   gHero = {
     pos: { i: 12, j: 5 },
-    isShoot: false
+    isShoot: false,
   }
 
   updateCell(gHero.pos, HERO)
 }
-
 
 function onKeyDown(eventKeyboard) {
   console.log('eventKeyboard', eventKeyboard)
@@ -25,25 +22,25 @@ function onKeyDown(eventKeyboard) {
   switch (eventKeyboard.key) {
     case 'ArrowLeft':
       nextPos.j--
-      break;
+      break
 
     case 'ArrowRight':
       nextPos.j++
-      break;
+      break
 
     case ' ':
       shoot()
-      break;
+      break
 
     case 'x':
       superShot()
-      break;
+      break
 
-    default: return null
+    default:
+      return null
   }
   return nextPos
 }
-
 
 function moveHero(ev) {
   if (!gGame.isOn) return
@@ -52,9 +49,7 @@ function moveHero(ev) {
   const nextPos = onKeyDown(ev)
   if (nextPos.j < 0 || nextPos.j > 13) return
 
-
   // console.log('nextPos', nextPos)
-
 
   gHero.pos
   updateCell(gHero.pos, null)
@@ -62,36 +57,30 @@ function moveHero(ev) {
   gHero.pos = nextPos
   updateCell(gHero.pos, HERO)
 
-
-
   // shoot(gHero.pos)
   // console.log('gLaser', gLaser)
   // console.log('gHero.isShoot', gHero.isShoot)
   // console.log('nextCell', nextCell)
-
 }
 
 // function onXShoot(ev) {
 //   console.log('ev', ev)
 // }
 
-
 function createLaser(pos) {
   if (gHero.isShoot === true) return
   gLaser = {
     pos: { i: pos.i - 1, j: pos.j },
-    speed: LASER_SPEED
+    speed: LASER_SPEED,
   }
 }
 
 function blinkLaser(pos) {
-
   if (gLaser.pos.i < 0) {
     clearInterval(gLaserInterval)
     gHero.isShoot = false
     return
   }
-
 
   let nextCell = gBoard[gLaser.pos.i][gLaser.pos.j]
   if (nextCell.gameObject === ALIEN) {
@@ -113,36 +102,21 @@ function blinkLaser(pos) {
     // console.log('gLaser.pos', gLaser.pos)
     // console.log('nextCell', nextCell)
 
-
-
     // console.log('nextCell', nextCell)
     // if (nextCell.gameObject === ALIEN) return
-
   }, 200)
-
 }
 
 function shoot(pos) {
   // if (!gGame.isOn) return
   createLaser(gHero.pos)
   clearInterval(gLaserInterval)
-
-  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 300);
-
-
+  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 500)
 }
-// function superShot(pos) {
-//   if (!gGame.isOn) return
-//   createLaser(gHero.pos)
-//   clearInterval(gLaserInterval)
+function superShot(pos) {
+  if (!gGame.isOn) return
+  createLaser(gHero.pos)
+  clearInterval(gLaserInterval)
 
-//   gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 100);
-
-
-// }
-
-
-
-
-
-
+  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 250)
+}
