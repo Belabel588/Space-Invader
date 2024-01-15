@@ -13,19 +13,10 @@ function createAliens(board) {
     }
   }
 }
-function buildAliensArr(board) {
-  const alienArr = []
-  for (let i = 0; i < board[0].length; i++) {
-    for (let j = 0; j < board.length; j++) {
-      if (board[i][j].gameObject === ALIEN) {
-        alienArr.push(board[i][j])
-      }
-    }
-  }
-  return alienArr
-}
+
 
 function moveAliens(shift) {
+  if (gIsAlienFreeze) return
   clearInterval(gIntervalAliens)
   gIntervalAliens = setInterval(() => {
     shift(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
@@ -35,7 +26,6 @@ function moveAliens(shift) {
 function shiftBoardRight(board, fromI, toI) {
   if (!gGame.isOn) return
   isShiftRight = true
-  let allRowsReachedEnd = true
 
   for (let i = fromI; i < toI; i++) {
     let rowReachedEnd = false
@@ -54,15 +44,16 @@ function shiftBoardRight(board, fromI, toI) {
         }
       }
     }
-    allRowsReachedEnd = allRowsReachedEnd && rowReachedEnd
-  }
 
-  if (allRowsReachedEnd) {
-    clearInterval(gIntervalAliens)
-    shiftBoardDown(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
-    // isShiftRight = false
+    if (rowReachedEnd) {
+      clearInterval(gIntervalAliens)
+      shiftBoardDown(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
+      return
+    }
   }
 }
+
+
 
 function shiftBoardDown(board, fromI, toI) {
   for (let i = toI; i >= fromI; i--) {
@@ -78,8 +69,6 @@ function shiftBoardDown(board, fromI, toI) {
       }
     }
   }
-  gAliensBottomRowIdx++
-  gAliensTopRowIdx++
 
   clearInterval(gIntervalAliens)
   if (isShiftRight) {
@@ -87,11 +76,11 @@ function shiftBoardDown(board, fromI, toI) {
   } else {
     moveAliens(shiftBoardRight)
   }
+  gAliensTopRowIdx++
+  gAliensBottomRowIdx++
 }
 
 function shiftBoardLeft(board, fromI, toI) {
-  let allRowsReachedLeft = true
-
   for (let i = fromI; i < toI; i++) {
     let rowReachedLeft = true
     for (let j = 0; j < board[i].length; j++) {
@@ -106,12 +95,13 @@ function shiftBoardLeft(board, fromI, toI) {
         }
       }
     }
-    allRowsReachedLeft = allRowsReachedLeft && rowReachedLeft
+
+    if (rowReachedLeft) {
+      clearInterval(gIntervalAliens)
+      isShiftRight = false
+      shiftBoardDown(board, gAliensTopRowIdx, gAliensBottomRowIdx)
+      return
+    }
   }
 
-  if (allRowsReachedLeft) {
-    clearInterval(gIntervalAliens)
-    shiftBoardDown(board, gAliensTopRowIdx, gAliensBottomRowIdx)
-    isShiftRight = false
-  }
 }

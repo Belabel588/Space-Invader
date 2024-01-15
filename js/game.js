@@ -56,10 +56,7 @@ function createBoard() {
     for (let j = 0; j < BOARD_SIZE; j++) {
       const cell = board[i][j]
       if (i === BOARD_SIZE - 1) {
-        board[i][j] = {
-          type: EARTH,
-          gameObject: null,
-        }
+        createCell()
       } else {
         board[i][j] = createCell()
       }
@@ -73,7 +70,6 @@ function renderBoard(board) {
   for (let i = 0; i < board.length; i++) {
     strHTML += `<tr>\n`
     for (let j = 0; j < board[0].length; j++) {
-      // const cell = board[i][j]
       const className = `cell cell-${i}-${j}`
 
       strHTML += `\t<td class = "${className}" data-i="${i}" data-j="${j}"></td>`
@@ -82,7 +78,9 @@ function renderBoard(board) {
   }
   const elContainer = document.querySelector(`.board`)
   elContainer.innerHTML = strHTML
-  // console.log('strHTML', strHTML)
+
+
+
 }
 
 function checkScore() {
@@ -97,7 +95,14 @@ function checkWin() {
   }
 }
 
+// function checkLosing(){
+//   if()
+// }
+
 function gameOver() {
+  gGame.isOn = false
+  clearInterval(gLaserInterval)
+  clearInterval(gIntervalAliens)
   let elWinModal = document.querySelector('.game-over-win-modal')
   elWinModal.style.display = 'block'
 }
@@ -107,10 +112,12 @@ function onStartGame() {
 }
 
 function onRestart() {
-  // console.log('supposed to restart')
   let elGameOverWinModal = document.querySelector('.game-over-win-modal')
   elGameOverWinModal.style.display = 'none'
   onInit()
+  gGame.isWin = false
+  gGame.alienCount = 0
+  gGame.score = 0
   checkScore()
 }
 

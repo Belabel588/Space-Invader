@@ -57,7 +57,7 @@ function moveHero(ev) {
 }
 
 function createLaser(pos) {
-  if (gHero.isShoot === true) return
+  // if (gHero.isShoot === true) return
   gLaser = {
     pos: { i: pos.i - 1, j: pos.j },
     speed: LASER_SPEED,
@@ -65,6 +65,7 @@ function createLaser(pos) {
 }
 
 function blinkLaser(pos) {
+  gHero.isShoot = true
   if (gLaser.pos.i < 0) {
     clearInterval(gLaserInterval)
     gHero.isShoot = false
@@ -82,26 +83,28 @@ function blinkLaser(pos) {
     checkWin()
     return
   }
+
   updateCell(gLaser.pos, LASER)
 
   setTimeout(() => {
-    gHero.isShoot = true
     updateCell(gLaser.pos, null)
     gLaser.pos.i--
-  }, 200)
+  }, 50)
 }
 
 
 function shoot() {
   if (!gGame.isOn) return
+  if (gHero.isShoot === true) return
   createLaser(gHero.pos)
   clearInterval(gLaserInterval)
-  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 500)
+  // gHero.isShoot = true
+  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), gLaser.speed)
 }
 function superShot() {
   if (!gGame.isOn) return
   createLaser(gHero.pos)
   clearInterval(gLaserInterval)
 
-  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), 250)
+  gLaserInterval = setInterval(() => blinkLaser(gLaser.pos), gLaser.speed - 20)
 }
