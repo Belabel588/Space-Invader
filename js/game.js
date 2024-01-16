@@ -7,6 +7,8 @@ const ALIEN_ROW_LENGTH = 8
 const ALIEN_ROW_COUNT = 3
 const ALIEN_SPEED = 500
 
+let isRed
+
 let gIntervalAliens
 
 
@@ -133,3 +135,20 @@ function updateCell(pos, gameObject = null) {
 
   elCell.innerHTML = gameObject || ''
 }
+
+
+function paintBoard(board) {
+  for (let d = 0; d < board.length; d++) {
+    let elCell = document.querySelector(`.cell-${d}-${d}`)
+    elCell.style.backgroundColor = 'red'
+  }
+
+
+  for (let d = 0; d < board.length; d++) {
+    let elSecondaryCell = document.querySelector(`.cell-${d}-${board.length - d - 1}`)
+    elSecondaryCell.style.backgroundColor = 'red'
+
+    // isRed = true
+  }
+}
+

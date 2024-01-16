@@ -21,6 +21,7 @@ function moveAliens(shift) {
   gIntervalAliens = setInterval(() => {
     shift(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
   }, ALIEN_SPEED)
+
 }
 
 function shiftBoardRight(board, fromI, toI) {
@@ -42,6 +43,12 @@ function shiftBoardRight(board, fromI, toI) {
         } else {
           rowReachedEnd = true
         }
+
+
+        let elCell = document.querySelector(`.cell-${i}-${j}`)
+        let cell = board[i][j]
+        if (elCell.style.backgroundColor === 'red')
+          console.log('works')
       }
     }
 
@@ -49,6 +56,8 @@ function shiftBoardRight(board, fromI, toI) {
       clearInterval(gIntervalAliens)
       shiftBoardDown(gBoard, gAliensTopRowIdx, gAliensBottomRowIdx)
       return
+
+
     }
   }
 }
