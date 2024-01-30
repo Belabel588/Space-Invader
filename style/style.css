@@ -12,7 +12,7 @@ body {
   /* min-height: 200px; */
   /* min-width: 700px; */
   background-color: rgb(27, 27, 27);
-  background-image: url("img/background.png"), url("img/background.png");
+  background-image: url("../img/background.png"), url("../img/background.png");
 }
 
 .cell {
