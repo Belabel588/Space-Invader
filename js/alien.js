@@ -48,7 +48,8 @@ function shiftBoardRight(board, fromI, toI) {
         let elCell = document.querySelector(`.cell-${i}-${j}`)
         let cell = board[i][j]
         if (elCell.style.backgroundColor === 'red')
-          console.log('works')
+          updateCell(currPos, null)
+        console.log('works')
       }
     }
 

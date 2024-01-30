@@ -1,13 +1,7 @@
 'use strict'
 
-let gPaintInterval
-getDate()
 
-function getDate() {
-  const date = new Date()
-  console.log('date', date)
 
-}
 
 //* GLOBALS
 const LASER_SPEED = 80
@@ -46,9 +40,9 @@ function onKeyDown(eventKeyboard) {
       break
 
     case 'a':
-      gPaintInterval = setInterval(() => paintBoard(gBoard), 10)
+      paintBoard(gBoard)
       setTimeout(() => {
-        clearInterval(gPaintInterval)
+        unPaintBoard(gBoard)
       }, 3000)
       break
 
