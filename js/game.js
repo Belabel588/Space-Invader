@@ -16,9 +16,9 @@ let gAliensBottomRowIdx = ALIEN_ROW_COUNT
 
 
 let gIsAlienFreeze = false
-const HERO = '<img class="space-ship" src="../img/space-ship.png">'
-const ALIEN = '<img class="alien" src="../img/alien.png">'
-const LASER = '<img class="missile" src="../img/missile.png">'
+const HERO = '<img class="space-ship" src="img/space-ship.png">'
+const ALIEN = '<img class="alien" src="img/alien.png">'
+const LASER = '<img class="missile" src="img/missile.png">'
 
 const EARTH = 'EARTH'
 const SKY = 'SKY'
